@@ -172,8 +172,15 @@ model19 = changeRxnBounds(model19,'Biomass_nitrogen_deletion',0,'b');
 
 %% 21. Convert gene IDs 
 model21 = ConvertCryptoGeneID (model19); 
-model21.description = cellstr('Cryptococcus curvatus model');
+
+model21.description = 'Cryptococcus_curvatus_model.xml';
 Final_model = model21; 
+
+%% save model 
+save('2019_23_04_model.mat','model') % mat fiel 
+sbmlModel = convertCobraToSBML_NhungModified(model); 
+OutputSBML(sbmlModel,'2019_23_04_Crypto_model.xml') % sbml file 
+
 
 
 
