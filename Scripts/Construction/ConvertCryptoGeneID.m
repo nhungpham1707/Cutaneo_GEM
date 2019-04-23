@@ -33,7 +33,7 @@ reaction = find(model_newgene.rxnGeneMat(:,strmatch(gene,model_newgene.genes))~=
 model_newgene.rxnGeneMat(reaction,strmatch(gene,model_newgene.genes)) = 0 ;
 model_newgene = changeGeneAssociation(model_newgene,model_newgene.rxns(reaction),'g3158.t1 or g6360.t1 or g6988.t1 or g7645.t1 or g921.t1');  
 
-unused_gene = model_newgene.genes(find(sum(model_newgene.rxnGeneMat, 1) == 0)); % there are 14 unsed genes
+unused_gene = model_newgene.genes(find(sum(model_newgene.rxnGeneMat, 1) == 0)); % there are 854 unsed genes (Yarrow lipolytica genes)
       
 storeGPR = model_newgene.grRules;  
 
