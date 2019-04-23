@@ -45,4 +45,4 @@ for i = 1 : length(model_newgene.rxns)
 end
 
 
-modelCrypto_gene = model_newgene; 
+modelCrypto_gene = model_newgene;  % final model have 636 genes
