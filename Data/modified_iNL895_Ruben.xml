@@ -2294,7 +2294,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
         <speciesReference species="s_1415"/>
       </listOfReactants>
       <listOfProducts>
-        <speciesReference species="s_0001"/>
+        <speciesReference species="s_0002"/>   
         <speciesReference species="s_0764"/>
         <speciesReference species="s_1411"/>
       </listOfProducts>
@@ -2343,7 +2343,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
         <speciesReference species="s_1415"/>
       </listOfReactants>
       <listOfProducts>
-        <speciesReference species="s_0004"/>
+        <speciesReference species="s_4867916324031723730003465267113001569766204042973139179315134464"/>
         <speciesReference species="s_0764"/>
         <speciesReference species="s_1411"/>
       </listOfProducts>
@@ -6678,6 +6678,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
       <listOfReactants>
         <speciesReference species="s_0650"/>
         <speciesReference species="s_1082"/>
+        <speciesReference species="s_1434"/>
       </listOfReactants>
       <listOfProducts>
         <speciesReference species="s_0366"/>
@@ -6709,6 +6710,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
       <listOfProducts>
         <speciesReference species="s_0732"/>
         <speciesReference species="s_1091"/>
+        <speciesReference species="s_1434"/>
       </listOfProducts>
       <kineticLaw>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -6735,6 +6737,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
       <listOfProducts>
         <speciesReference species="s_0652"/>
         <speciesReference species="s_1084"/>
+        <speciesReference species="s_1439"/>
       </listOfProducts>
       <kineticLaw>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -6761,6 +6764,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
       <listOfProducts>
         <speciesReference species="s_0171"/>
         <speciesReference species="s_1082"/>
+        <speciesReference species="s_1434"/>
       </listOfProducts>
       <kineticLaw>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -6839,6 +6843,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
       <listOfProducts>
         <speciesReference species="s_0190"/>
         <speciesReference species="s_1082"/>
+        <speciesReference species="s_1434"/>
       </listOfProducts>
       <kineticLaw>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -6865,6 +6870,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
       <listOfProducts>
         <speciesReference species="s_0192"/>
         <speciesReference species="s_1084"/>
+        <speciesReference species="s_1439"/>
       </listOfProducts>
       <kineticLaw>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -6891,6 +6897,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
       <listOfProducts>
         <speciesReference species="s_0190"/>
         <speciesReference species="s_1091"/>
+        <speciesReference species="s_1434"/>
       </listOfProducts>
       <kineticLaw>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -6916,7 +6923,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
       </listOfReactants>
       <listOfProducts>
         <speciesReference species="s_0453"/>
-        <speciesReference species="s_0764" stoichiometry="2"/>
+        <speciesReference species="s_0764" stoichiometry="1"/>
         <speciesReference species="s_1087"/>
       </listOfProducts>
       <kineticLaw>
@@ -6943,7 +6950,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
       </listOfReactants>
       <listOfProducts>
         <speciesReference species="s_0369"/>
-        <speciesReference species="s_0764" stoichiometry="2"/>
+        <speciesReference species="s_0764" stoichiometry="1"/>
         <speciesReference species="s_1096"/>
       </listOfProducts>
       <kineticLaw>
@@ -6970,7 +6977,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
       </listOfReactants>
       <listOfProducts>
         <speciesReference species="s_0372"/>
-        <speciesReference species="s_0769" stoichiometry="2"/>
+        <speciesReference species="s_0769" stoichiometry="1"/>
         <speciesReference species="s_1089"/>
       </listOfProducts>
       <kineticLaw>
@@ -6997,7 +7004,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
       </listOfReactants>
       <listOfProducts>
         <speciesReference species="s_0372"/>
-        <speciesReference species="s_0769" stoichiometry="2"/>
+        <speciesReference species="s_0769" stoichiometry="1"/>
         <speciesReference species="s_1098"/>
       </listOfProducts>
       <kineticLaw>
@@ -7023,7 +7030,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
         <speciesReference species="s_1439"/>
       </listOfReactants>
       <listOfProducts>
-        <speciesReference species="s_0769" stoichiometry="2"/>
+        <speciesReference species="s_0769" stoichiometry="1"/>
         <speciesReference species="s_0821"/>
         <speciesReference species="s_1089"/>
       </listOfProducts>
@@ -7050,7 +7057,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
         <speciesReference species="s_1434"/>
       </listOfReactants>
       <listOfProducts>
-        <speciesReference species="s_0764" stoichiometry="2"/>
+        <speciesReference species="s_0764" stoichiometry="1"/>
         <speciesReference species="s_0820"/>
         <speciesReference species="s_1096"/>
       </listOfProducts>
@@ -7077,7 +7084,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
         <speciesReference species="s_1439"/>
       </listOfReactants>
       <listOfProducts>
-        <speciesReference species="s_0769" stoichiometry="2"/>
+        <speciesReference species="s_0769" stoichiometry="1"/>
         <speciesReference species="s_0821"/>
         <speciesReference species="s_1098"/>
       </listOfProducts>
@@ -7106,6 +7113,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
       <listOfProducts>
         <speciesReference species="s_0836"/>
         <speciesReference species="s_1082"/>
+        <speciesReference species="s_1434"/>
       </listOfProducts>
       <kineticLaw>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -7132,6 +7140,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
       <listOfProducts>
         <speciesReference species="s_0838"/>
         <speciesReference species="s_1084"/>
+        <speciesReference species="s_1439"/>
       </listOfProducts>
       <kineticLaw>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -7158,6 +7167,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
       <listOfProducts>
         <speciesReference species="s_0836"/>
         <speciesReference species="s_1091"/>
+        <speciesReference species="s_1434"/>
       </listOfProducts>
       <kineticLaw>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -7184,6 +7194,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
       <listOfProducts>
         <speciesReference species="s_0839"/>
         <speciesReference species="s_1082"/>
+        <speciesReference species="s_1434"/>
       </listOfProducts>
       <kineticLaw>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -7210,6 +7221,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
       <listOfProducts>
         <speciesReference species="s_0841"/>
         <speciesReference species="s_1084"/>
+        <speciesReference species="s_1439"/>
       </listOfProducts>
       <kineticLaw>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -7236,6 +7248,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
       <listOfProducts>
         <speciesReference species="s_0839"/>
         <speciesReference species="s_1091"/>
+        <speciesReference species="s_1434"/>
       </listOfProducts>
       <kineticLaw>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -7260,7 +7273,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
         <speciesReference species="s_1434"/>
       </listOfReactants>
       <listOfProducts>
-        <speciesReference species="s_0764" stoichiometry="2"/>
+        <speciesReference species="s_0764" stoichiometry="1"/>
         <speciesReference species="s_1087"/>
         <speciesReference species="s_1206"/>
       </listOfProducts>
@@ -7289,6 +7302,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
       <listOfProducts>
         <speciesReference species="s_1082"/>
         <speciesReference species="s_1404"/>
+        <speciesReference species="s_1434"/>
       </listOfProducts>
       <kineticLaw>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8375,7 +8389,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
       </listOfReactants>
       <listOfProducts>
         <speciesReference species="s_0400"/>
-        <speciesReference species="s_0766"/>
+        <speciesReference species="s_0764"/>
         <speciesReference species="s_1207"/>
       </listOfProducts>
       <kineticLaw>
@@ -10912,6 +10926,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
       <listOfReactants>
         <speciesReference species="s_0543"/>
         <speciesReference species="s_1082"/>
+        <speciesReference species="s_1434"/>
       </listOfReactants>
       <listOfProducts>
         <speciesReference species="s_0535"/>
@@ -11079,7 +11094,6 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
       </notes>
       <listOfReactants>
         <speciesReference species="s_0136"/>
-        <speciesReference species="s_0764"/>
         <speciesReference species="s_1434"/>
       </listOfReactants>
       <listOfProducts>
@@ -14845,6 +14859,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
       <listOfReactants>
         <speciesReference species="s_0411"/>
         <speciesReference species="s_1092"/>
+        <speciesReference species="s_1435"/>
       </listOfReactants>
       <listOfProducts>
         <speciesReference species="s_0343"/>
@@ -19876,6 +19891,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
       <listOfProducts>
         <speciesReference species="s_0015"/>
         <speciesReference species="s_1096"/>
+        <speciesReference species="s_0764"/>
       </listOfProducts>
       <kineticLaw>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -19901,6 +19917,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
       <listOfProducts>
         <speciesReference species="s_0016"/>
         <speciesReference species="s_1098"/>
+        <speciesReference species="s_0769"/>
       </listOfProducts>
       <kineticLaw>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -38134,7 +38151,7 @@ Y. lipolytica iNL895represents the first well-annotated metabolic model of an ol
         </listOfParameters>
       </kineticLaw>
     </reaction>
-    <reaction sboTerm="SBO:0000185" id="r_1354" name="L-aspartate transport">
+    <reaction sboTerm="SBO:0000185" id="r_1354" name="L-asparagine transport">
       <notes>
         <html:body>
           <html:p>GENE_ASSOCIATION: YALI0E10637g</html:p>
