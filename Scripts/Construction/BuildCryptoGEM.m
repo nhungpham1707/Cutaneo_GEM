@@ -172,7 +172,7 @@ model19 = changeRxnBounds(model19,'Biomass_nitrogen_deletion',0,'b');
 
 %% 21. Convert gene IDs 
 model21 = ConvertCryptoGeneID (model19); 
-
+model21.description = cellstr('Cryptococcus curvatus model');
 Final_model = model21; 
 
 
