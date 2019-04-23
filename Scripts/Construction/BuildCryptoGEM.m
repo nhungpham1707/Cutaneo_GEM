@@ -19,7 +19,9 @@ function [Final_model] = BuildCryptoGEM;
 % - Step 13. Add NGAM reaction as reference model does not have 
 % 
 %% Data use for this project include
-% - iNL895 sbml file which is modified. In the original model, boundary metabolites such as hydrogen, coA, Phospho and ect are not read in mat file. 
+% - iNL895 sbml file which is modified. In the original model, boundary
+% metabolites such as hydrogen, coA, Phospho and ect are not read in mat
+% file. Leakage reactions were also fixed
 % - List of homologous genes from manual annotation with Maarten + Bart annotation
 
 % Nhung, 6th Febuary 2019 
@@ -39,7 +41,7 @@ FA_model = FAcuration (model);
 
 % 3. TAG synthesis 
 
-TAG_model = TAGcuration (FA_model); 
+TAG_model = TAGcuration (FA_model); % acyl-coA pools are set here
 
 % 4. PLs synthesis 
 
@@ -60,7 +62,7 @@ Exc_model = swaplbExc(other_model);
 
 
 %% 9. Remove wrong reactions
-Remove_model = RemoveWrongRxns(Exc_model); 
+Remove_model = RemoveWrongRxns2(Exc_model);  % change this later Nhung
 
 %% 10. Clean model
 Clean_model = CleanModel(Remove_model); 
@@ -130,16 +132,20 @@ cd (dir)
 
 to_remove = raw;
 
-to_remove2 = setdiff(to_remove,{'r_0859','r_0398','r_0941','r_1035'}); % YALI015631 = g5226.t1 in Bart annotation
+to_remove2 = setdiff(to_remove,{'r_0859','r_0398','r_0941','r_1035'}); % YALI0F15631 = g5226.t1 in Bart annotation
 model = removeRxns(model1,to_remove2);
 
 % curate model
 model.metNames(strmatch('lipid_body_cytosol',model.metNames)) = cellstr('lipid_body [cytoplasm]');
 
 %% 13. add NGAM reaction (Nhung added on 25th 01 2019 ) , the reference model
-% does not have this reaction
-model13 = addReaction (model,'ATPM','s_0446 + s_1434 -> s_0400 + s_0764 + s_1207')
-model13.lb(strmatch('ATPM',model13.rxns)) = 1; % set random value for this 
+% has this reaction with wrong equation (H[extracellular] instead of
+% cytoplasm] , already modified in the sbml file r_0249 
+% change the name
+% model13 = addReaction (model,'ATPM','s_0446 + s_1434 -> s_0400 + s_0764 + s_1207')
+% model13.lb(strmatch('ATPM',model13.rxns)) = 1; % set random value for this % in the model, ATPase,cytosolic  
+model13 = model; 
+model13.rxns(strmatch('r_0249',model13.rxns)) = cellstr('ATPM');
 
 %% 14. Convert metabolite ID
 model14 = ConvertID(model13); 
@@ -147,14 +153,27 @@ model14 = ConvertID(model13);
 %% 15. Biomass curation
 
 %% 16. ATP citrate lyase reaction
-model16 = CurateATPCitrateLyase(model15);
+ model16 = CurateATPCitrateLyase(model14); % change this to model15 after finishing curating biomass
 
+ %% 17. debugging network, add demand reaction 
+ model_demand = addDemandReaction(model16,'52381_r');
 %% 17. set exchange biomass as objective function
-model17 = changeObjective(model16,'r_1814',1);
+model17 = changeObjective(model_demand,'r_1814',1);
 
-Final_model = model17; 
+%%18. Formulate biomass
+model18  = FormulateBiomass(model17); 
 
+%% 19. set condition. only glucose now
+model19 = changeRxnBounds(model18,'Acyl_Pool_glycerol',0,'b');
+model19 = changeRxnBounds(model19,'Acyl_Pool_glycerol_Ndel',0,'b');
+model19 = changeRxnBounds(model19,'Biomass_nitrogen_deletion',0,'b');
 
+%% 20. Inspecting unbalance reactions  - this was done directly on iNL895.xml prior to construction, save as modified_iNL895.xml
+
+%% 21. Convert gene IDs 
+model21 = ConvertCryptoGeneID (model19); 
+
+Final_model = model21; 
 
 
 
