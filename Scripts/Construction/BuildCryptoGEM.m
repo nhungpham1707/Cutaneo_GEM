@@ -15,14 +15,26 @@ function [Final_model] = BuildCryptoGEM;
 %     + PPP
 %     + Others 
 % - Step 11. Model at this stage grow really slow, add reactions from non-homologous genes to recover growth
-% - Step 12. Update annotation for the new/correct genome from Bart
+% - Step 12. Update annotation for the new/correct genome
 % - Step 13. Add NGAM reaction as reference model does not have 
-% 
+% - Step 14. Convert metabolite ID
+% -Step 15. ATP citrate lyase reaction
+% - Step 16. debugging network, add demand reaction 
+% - Step 17. set exchange biomass as objective function
+% - Step 18. Formulate biomass
+% - Step 19. set condition. only glucose now
+% - Step 20. Inspecting unbalance reactions  - this was done directly on iNL895.xml prior to construction, save as modified_iNL895.xml
+% - Step 21. Convert gene IDs 
+% - Step 22. Remove infeasible loop that generate energy from nothing 
+
 %% Data use for this project include
 % - iNL895 sbml file which is modified. In the original model, boundary
 % metabolites such as hydrogen, coA, Phospho and ect are not read in mat
 % file. Leakage reactions were also fixed
 % - List of homologous genes from manual annotation with Maarten + Bart annotation
+% - '2019_01st_05_to_make_irreversible.xlsx' : list of reactions whose reverse direction involve in loop 
+% - '2019_01st_05_to_make_reversible.xlsx': list of reactions whose reverse
+% direction help to rescue growth after removing loop
 
 % Nhung, 6th Febuary 2019 
 
@@ -74,9 +86,7 @@ model = Clean_model;
 %% 11. Model grow really slow. Add essential reactions from non-homologous genes to recover growth
 reaction = {'r_0083','r_0090','r_0091','r_0246','r_0471','r_0742','r_0745','r_2_bb'}; 
 
-
-modelFileName = 'modified_iNL895_Ruben.xml';
-
+modelFileName = 'modified_iNL895.xml'; 
 dir = fileparts(which(modelFileName)); 
 cd (dir)
 ref_model = readCbModel(modelFileName); 
@@ -150,13 +160,11 @@ model13.rxns(strmatch('r_0249',model13.rxns)) = cellstr('ATPM');
 %% 14. Convert metabolite ID
 model14 = ConvertID(model13); 
 
-%% 15. Biomass curation
+%% 15. ATP citrate lyase reaction
+ model15 = CurateATPCitrateLyase(model14); 
 
-%% 16. ATP citrate lyase reaction
- model16 = CurateATPCitrateLyase(model14); % change this to model15 after finishing curating biomass
-
- %% 17. debugging network, add demand reaction 
- model_demand = addDemandReaction(model16,'52381_r');
+ %% 16. debugging network, add demand reaction 
+ model_demand = addDemandReaction(model15,'52381_r');
 %% 17. set exchange biomass as objective function
 model17 = changeObjective(model_demand,'r_1814',1);
 
@@ -173,15 +181,13 @@ model19 = changeRxnBounds(model19,'Biomass_nitrogen_deletion',0,'b');
 %% 21. Convert gene IDs 
 model21 = ConvertCryptoGeneID (model19); 
 
-model21.description = 'Cryptococcus_curvatus_model.xml';
-Final_model = model21; 
 
-%% save model 
-save('2019_23_04_model.mat','model') % mat fiel 
-sbmlModel = convertCobraToSBML_NhungModified(model); 
-OutputSBML(sbmlModel,'2019_23_04_Crypto_model.xml') % sbml file 
+%% 22. Remove infeasible loop that generate energy from thin air 
 
+model22  = RemoveATPLoop(model21);
 
+model22.description = 'Cryptococcus_curvatus_model.xml';
 
+Final_model = model22; 
 
 
