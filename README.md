@@ -19,7 +19,7 @@ Nhung, 07th Feb 2019
 
 
 *  Matlab2015b and above (some functions in COBRA toolbox had not been designed for older Matlab version)
-*  CobraToolbox version ...
+*  CobraToolbox version versions/cobratoolbox_2.0.6
 *  Or other software or toolboxes that support genome-scale metabolic models in SBML format 
 
 **Model files**
