@@ -23,6 +23,6 @@ Nhung, 07th Feb 2019
 *  Or other software or toolboxes that support genome-scale metabolic models in SBML format 
 
 **Model files**
-Model is available in .xml and .mat. 
+iNP636.xml and iNP636.mat. 
 
 **Scripts**
