@@ -1,13 +1,13 @@
-**Genome-scale constraint-based metabolic model of* Cryptococcus curvatus*  **
+**Genome-scale constraint-based metabolic model of* Cutaneotrichosporon curvatum*  **
 
 **Folder structure description: **
-A genome-scale constraint-based metabolic model of* Cryptococcus curvatus*, iNP636, was constructed using *Yarrowia lypolitica* model iNL895 as a template. The model was then used to study lipid synthesis in *C.curvatus*.
+A genome-scale constraint-based metabolic model of* Cutaneotrichosporon curvatum*, iNP636, was constructed using *Yarrowia lipolytica* model iNL895 as a template. The model was then used to study lipid synthesis in *C.curvatus*.
 
 Start date: Nov-2016
 
 The data folder contains data to draft, curate and validate the model. 
 The script folder contains codes to build model (construction folder), Validation (same name folder), and Simulation (same name folder). 
-In the construction folder, BuildCryptoGEM is the master script to build *C.curvatus *model. This function calls all other functions in the current folder to build the model.
+In the construction folder, BuildCryptoGEM is the master script to build *C.curvatum *model. This function calls all other functions in the current folder to build the model.
 
 More details are explained in the script. 
 
