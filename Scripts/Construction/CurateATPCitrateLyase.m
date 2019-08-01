@@ -24,7 +24,7 @@ accoa = 'accoa_c';
 model = addReaction(model,'R00352','atp_c + cit_c + coa_c -> adp_c + pi_c + aacoa_c  + oaa_c' );
 model.rxnNames (end) = cellstr('ATP-citrate lyase');
 model = changeGeneAssociation(model,'R00352', 'g3238.t1');
-model.subsystems(end) = cellstr('Citrate cycle');
+model.subsystems(end) = cellstr('TCA cycle');
 
 ATP_citrate_model = model; 
 
