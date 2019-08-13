@@ -21,6 +21,7 @@
 
 %% Nhung 27th June 2019 , modified, used function to create biomass at different C/N 
 
+%% Nhung 13rd August 2019, use yyaxis to plot 2 scales on the same plot -need to use Matlab R2016a or above for this as yyaxis is a built-in library Matlab R2016 and above
 
 % ori_model = BuildCryptoGEM;
 % 
@@ -121,59 +122,6 @@ for  i = 1: length(plot_rx)
     end
     to_plot{i} = median_flux; % 13 column for 13 rxns, 10 value/column for 10 CN ratio
 end
-
-% plot 
-figure(1)
-for i = 1 : length(to_plot)
-    plot (CNgg, to_plot{i},'LineWidth',5)
-    hold on
-end
-   ylabel('fluxes mmol/mmol/h')
-    xlabel('C/N (g/g)')
-    set(gca,'FontSize',30)
-    
-    legend(plot_rx{1:2,2})
-    ylim([0 41])
-    xlim([0 71])
-    
- figure(3)   
- subplot(1,2,1) 
-for i = 1 : length(to_plot)
-    plot (CNgg, to_plot{i},'LineWidth',5)
-    hold on
-      ylabel('fluxes mmol/mmol/h')
-    xlabel('C/N (g/g)')
-    set(gca,'FontSize',30)
-      ylim([0 41])
-    xlim([0 71])
-    legend(plot_rx{:,2})
-end
-
-subplot(1,2,2)
-for i = 1: 2
-     plot (CNgg, to_plot{i},'LineWidth',5)
-    hold on
-      ylabel('fluxes mmol/mmol/h')
-    xlabel('C/N (g/g)')
-    set(gca,'FontSize',30)
-%       ylim([0 0.2])
-%     xlim([0 71])
-    legend(plot_rx{1:2,2})
-end
-    
-    
-
-% legend ('Lipid production','citrate transport 1' , 'cit t2','cit t3', 'cit t4',...
-%     'ATP-citrate lyase', 'pyruvate dehydrogenase','acetyl-CoA synthetase','acetyl-CoA Carboxylase',...
-%     'malonyl-CoA-ACP transcylase','phosphatidic acid phosphatase', ...
-%     'lyso-phosphatidic acid acyltransferase') 
-% 
-% legend(check_rxns{1:2,2}, check_rxns{6:8,2}, check_rxns{10:12,2})    
-    
-plotSampleHist(plot_rx(:,1), {sampling_result{4}.points},model,[],[3,7]);
-
-sampleScatterMatrix(plot_rx(:,1),model,sampling_result{4}.points)
-
 
 %% Plot mean and std with 2 y axis
 
