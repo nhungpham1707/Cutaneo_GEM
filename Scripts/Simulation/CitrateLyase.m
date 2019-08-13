@@ -150,7 +150,7 @@ end
  ylabel('Fluxes (mmol.g_{DCW}^{-1}.h^{-1})')
     xlabel('C/N (g/g)')
     set(gca,'FontSize',40)
-       legend(plot_rx(1:2,2))
+ 
 
 yyaxis right
 for i = 3: 4
@@ -169,123 +169,13 @@ legend boxoff
 box off
 
 
-figure (8) 
-yyaxis left
-e = errorbar(CNgg,mean_plot{1},std_plot{1});
-e.LineWidth = 4;
-e.LineStyle = '--';
- hold on
-shadedErrorBar(CNgg,mean_plot{2},std_plot{2},'Lineprops','-b','transparent',1);
-% s.mainLine.LineWidth = 6;
-    ylabel('Fluxes (mmol.g_{DCW}^{-1}.h^{-1})')
-    xlabel('C/N (g/g)')
-    set(gca,'FontSize',30)
-   xlim([0 71])
 
-   yyaxis right
-e = errorbar(CNgg,mean_plot{4},std_plot{4});
-e.LineWidth = 4;
-e.LineStyle = '--';
-hold on
-% shadedErrorBar(CNgg,mean_plot{3},std_plot{3},'Lineprops','-r','transparent',1);
-shadedErrorBar(CNgg,mean_plot{3},std_plot{3},'Lineprops',{'-', 'color',[1 0.49 0] },'transparent',1);
-% s2.mainLine.LineWidth = 6;
-
-    ylabel('Fluxes (mmol.g_{DCW}^{-1}.h^{-1})')
-    xlabel('C/N (g/g)')
-    set(gca,'FontSize',30)
-   xlim([0 71])
-legend(plot_rx{1:4,2})
-legend boxoff
-
-box off
-
-figure(3)
-yyaxis left
-for i = 1:2
-    plot(CNgg,mean_plot{i},'LineWidth',5)
-    hold on
-     ylabel('Fluxes (mmol.g_{DCW}^{-1}.h^{-1})')
-    xlabel('C/N (g/g)')
-    set(gca,'FontSize',30)
-   xlim([0 72])
-end
-
-yyaxis right 
-
-for i = 3:4
-    box off 
-    plot(CNgg,mean_plot{i},'LineWidth',5)
-    hold on
-     ylabel('Fluxes (mmol.g_{DCW}^{-1}.h^{-1})')
-    xlabel('C/N (g/g)')
-    set(gca,'FontSize',30)
-   xlim([0 71])
-end
-
-legend(plot_rx{1:4,2})
-legend boxoff
-box off
-% yyaxis left
-% %shadedErrorBar(CNgg,mean_plot{1},std_plot{1},'Lineprops','-r','transparent',1);
-%  hold on
-% shadedErrorBar(CNgg,mean_plot{2},std_plot{2},'Lineprops','-b','transparent',1);
-% 
-% yyaxis right 
-% % shadedErrorBar(CNgg,mean_plot{3},std_plot{3},'Lineprops','-y','transparent',1);
-%  hold on
-% shadedErrorBar(CNgg,mean_plot{4},std_plot{4},'Lineprops','-g','transparent',1);
+  
 
 
 
-%% plot on the same scale with zoom in figure 
-plot_rx = {'lipid_synthesis';acyl_glucose;cit_t4; cit_lyase};
-plot_rx (:,2) = {'lipid synthesis'; 'acyl-coA production';'citrate transport from mitochondria to cytosol';'ATP-citrate lyase'}; 
-for  i = 1: length(plot_rx)
-    index = strmatch(plot_rx(i,1),model.rxns);
-    for j = [2:4,6: length(CNmol)] % 0, 5 are infeasible
-    mean_flux (j,1) = mean(sampling_result{j}.points(index,:)); 
-    std_flux (j,1) = std(sampling_result{j}.points(index,:));
-    end
-    mean_plot{i} = mean_flux; % 4 column for 4 rxns, 10 value/column for 10 CN ratio
-    std_plot{i} = std_flux;
-end
 
 
-color = {[0 0.4470 0.7410],	[0.8500 0.3250 0.0980], [0.3010 0.7450 0.9330], [0.6350 0.0780 0.1840] }; 
 
-figure (3) 
-subplot(2,1,1)
-for i =1: length(plot_rx)
-e = errorbar(CNgg,mean_plot{i},std_plot{i});
-e.LineWidth = 4;
-e.LineStyle = '-';hold on
-ylabel('Fluxes (mmol.g_{DCW}^{-1}.h^{-1})')
-xlabel('C/N (g/g)')
-set(gca,'FontSize',30)
-end
-xlim([0 72])
-max_1 = max(std_plot{3});
-Imax_1 = find(std_plot{3} == max_1);
-mean_1 = mean_plot{3}; 
-ylim([(mean_1(Imax_1) - max_1) (mean_1(Imax_1) + max_1)])
-legend (plot_rx(:,2))
-legend boxoff
-box off
-title ('A.')
-subplot(2,1,2)
-for i = 1:2
-e = errorbar(CNgg,mean_plot{i},std_plot{i});
-e.LineWidth = 4;
-e.LineStyle = '-';hold on
-ylabel('Fluxes (mmol.g_{DCW}^{-1}.h^{-1})')
-xlabel('C/N (g/g)')
-set(gca,'FontSize',30)
-end
-  xlim([0 72])
-  max_2 = max(std_plot{2});
-Imax_2 = find(std_plot{2} == max_2);
-mean_2 = mean_plot{2}; 
-ylim([(mean_2(Imax_2) - max_2) (mean_2(Imax_2) + max_2)])
-title ('B.')
-box off
+
+
