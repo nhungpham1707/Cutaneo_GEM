@@ -8,7 +8,8 @@
 % % - Plot with flux for ATP citrate lyase and citrate transporter
 % % Simulate:
 % % 
-% % - Use biomass at nitrogen abundant for C/N < 12.83 mol/mol and biomass for nitrogen deletion for C/N > 12.83 mol/mol
+% % - Generate new biomass everytime changing Carbon and nitrogen uptake
+% %   rate. using func BiomassInDifConditions 
 % % - At each C/N ratio constraint the corresponding biomass reaction use in-silico growth rate for C/N < 12.82, and 0.2 for C/N > 12.83 
 % % - Change objective function to lipid and optimize for lipid production
 % % - Sample the solution space at each C/N ratio
@@ -16,15 +17,19 @@
 % % - Plot results
 % % 
 
-%% Nhung 01st May 2019
+%% Nhung 01st May 2019  
 
-ori_model = BuildCryptoGEM;
-
-clearvars -except ori_model , clc
-model = ori_model; 
+%% Nhung 27th June 2019 , modified, used function to create biomass at different C/N 
 
 
+% ori_model = BuildCryptoGEM;
+% 
+% clearvars -except ori_model , clc
+% model = ori_model; 
 
+clearvars, clc 
+
+load iNP636.mat
 
 %% Set up parameters
 gluc = 'r_51_exchange';
@@ -51,7 +56,7 @@ ptoh = 'R02239_er' ; % phosphatidic acid phosphatase
 phos = 'r_25_cl'; % lyso-phosphatidic acid acyltransferase 
 
 
-model = changeRxnBounds(model,biomass_Ndel, 0,'b'); 
+model = changeRxnBounds(model,{biomass_Ndel, biomass_N}, 0,'b'); 
 model = changeRxnBounds(model,acyl_N,0,'b');
 model = changeRxnBounds(model,acyl_Ndel,0,'b');
 model = changeRxnBounds(model,{acyl_glucose, acyl_glucose}, [-1000 1000] , {'l','u'});
@@ -66,12 +71,11 @@ for i = 1: length(CNmol)
 glc_mol (i)  =  CNmol(i)* abs(mol_urea)/6;
 end
 
-model1 = changeRxnBounds(model,biomass_Ndel, 0,'b'); 
-model1 = changeRxnBounds(model1,biomass_N, 1000,'u');
-model1 = changeObjective(model1,biomass);
+model = changeObjective(model,biomass);
 
 % get growth rate
 for i = 1: length(glc_mol)
+    model1 = BiomassInDifConditions(model,-glc_mol(i),6, mol_urea,1);
     model1 = changeRxnBounds(model1,gluc,-glc_mol(i),'b');
     FBA1 = optimizeCbModel(model1);
     gr1 (i) = FBA1.f;
@@ -79,21 +83,15 @@ end
 
 %% Sampling 
 
-
-model3 = model; 
-
-for i  = 3: length(CNmol)
-    model3 = changeRxnBounds(model3,biomass_Ndel, 0,'b'); 
-    model3 = changeRxnBounds(model3,biomass_N, 0,'b');
-    model3 = changeRxnBounds(model3,gluc, - glc_mol(i),'b');
-    model_lipid = changeObjective(model3,lipid);
+for i  = 1 : length(CNmol)
+    model1 = BiomassInDifConditions(model,-glc_mol(i),6, mol_urea,1); 
+    model1 = changeRxnBounds(model1,gluc, - glc_mol(i),'b');
+    model_lipid = changeObjective(model1,lipid);
 
     if CNmol (i) < 12.83
         model_lipid = changeRxnBounds(model_lipid,{biomass,biomass},[gr1(i)*90/100,gr1(i)],{'l','u'});
-        model_lipid = changeRxnBounds(model_lipid,biomass_N, 1000, 'u');
     else
         model_lipid = changeRxnBounds(model_lipid,{biomass,biomass},[0.2*90/100,0.2],{'l','u'});
-        model_lipid = changeRxnBounds(model_lipid,biomass_Ndel,1000,'u');
     end
     FBA3 = optimizeCbModel(model_lipid);
     lipid3 (i) = FBA3.f; 
@@ -114,8 +112,8 @@ check_rxns (:,2) = {'lipid synthesis';'acyl-coA pool';'citrate transport 1' ; 'c
     'malonyl-CoA-ACP transcylase';'phosphatidic acid phosphatase'; ...
     'lyso-phosphatidic acid acyltransferase'} ; 
 
-plot_rx = {cit_t4; cit_lyase};
-plot_rx (:,2) = {'citrate transport from mitochondria to cytosol';'ATP-citrate lyase'}; 
+plot_rx = {'lipid_synthesis';acyl_glucose;cit_t4; cit_lyase};
+plot_rx (:,2) = {'lipid synthesis'; 'acyl-coA pool';'citrate transport from mitochondria to cytosol';'ATP-citrate lyase'}; 
 for  i = 1: length(plot_rx)
     index = strmatch(plot_rx(i,1),model.rxns);
     for j = [2:4,6: length(CNmol)] % 0, 5 are infeasible
@@ -125,7 +123,7 @@ for  i = 1: length(plot_rx)
 end
 
 % plot 
-figure(2)
+figure(1)
 for i = 1 : length(to_plot)
     plot (CNgg, to_plot{i},'LineWidth',5)
     hold on
@@ -134,12 +132,212 @@ end
     xlabel('C/N (g/g)')
     set(gca,'FontSize',30)
     
-    legend(plot_rx{:,2})
+    legend(plot_rx{1:2,2})
     ylim([0 41])
     xlim([0 71])
+    
+ figure(3)   
+ subplot(1,2,1) 
+for i = 1 : length(to_plot)
+    plot (CNgg, to_plot{i},'LineWidth',5)
+    hold on
+      ylabel('fluxes mmol/mmol/h')
+    xlabel('C/N (g/g)')
+    set(gca,'FontSize',30)
+      ylim([0 41])
+    xlim([0 71])
+    legend(plot_rx{:,2})
+end
+
+subplot(1,2,2)
+for i = 1: 2
+     plot (CNgg, to_plot{i},'LineWidth',5)
+    hold on
+      ylabel('fluxes mmol/mmol/h')
+    xlabel('C/N (g/g)')
+    set(gca,'FontSize',30)
+%       ylim([0 0.2])
+%     xlim([0 71])
+    legend(plot_rx{1:2,2})
+end
+    
+    
+
 % legend ('Lipid production','citrate transport 1' , 'cit t2','cit t3', 'cit t4',...
 %     'ATP-citrate lyase', 'pyruvate dehydrogenase','acetyl-CoA synthetase','acetyl-CoA Carboxylase',...
 %     'malonyl-CoA-ACP transcylase','phosphatidic acid phosphatase', ...
 %     'lyso-phosphatidic acid acyltransferase') 
 % 
-% legend(check_rxns{1:2,2}, check_rxns{6:8,2}, check_rxns{10:12,2})
+% legend(check_rxns{1:2,2}, check_rxns{6:8,2}, check_rxns{10:12,2})    
+    
+plotSampleHist(plot_rx(:,1), {sampling_result{4}.points},model,[],[3,7]);
+
+sampleScatterMatrix(plot_rx(:,1),model,sampling_result{4}.points)
+
+
+%% Plot mean and std with 2 y axis
+
+plot_rx = {'lipid_synthesis';acyl_glucose;cit_t4; cit_lyase};
+plot_rx (:,2) = {'lipid synthesis'; 'acyl-coA production';'citrate transport from mitochondria to cytosol';'ATP-citrate lyase'}; 
+for  i = 1: length(plot_rx)
+    index = strmatch(plot_rx(i,1),model.rxns);
+    for j = [2:4,6: length(CNmol)] % 0, 5 are infeasible
+    mean_flux (j,1) = mean(sampling_result{j}.points(index,:)); 
+    std_flux (j,1) = std(sampling_result{j}.points(index,:));
+    end
+    mean_plot{i} = mean_flux; % 4 column for 4 rxns, 10 value/column for 10 CN ratio
+    std_plot{i} = std_flux;
+end
+
+
+color = {[0 0.4470 0.7410],	[0.8500 0.3250 0.0980], [0.3010 0.7450 0.9330], [0.6350 0.0780 0.1840] }; 
+yyaxis left
+for i = 1: 2
+e = errorbar(CNgg,mean_plot{i},std_plot{i});
+% e.Color = color{i};
+e.LineWidth =4;
+% e.LineStyle = '-';
+hold on
+end
+ ylabel('Fluxes (mmol.g_{DCW}^{-1}.h^{-1})')
+    xlabel('C/N (g/g)')
+    set(gca,'FontSize',40)
+       legend(plot_rx(1:2,2))
+
+yyaxis right
+for i = 3: 4
+e = errorbar(CNgg,mean_plot{i},std_plot{i})
+hold on
+% e.Color = color{i};
+e.LineWidth = 4;
+% e.LineStyle = '-';
+end
+    ylabel('Fluxes (mmol.g_{DCW}^{-1}.h^{-1})')
+    xlabel('C/N (g/g)')
+    set(gca,'FontSize',40)
+   xlim([0 72])
+legend (plot_rx(:,2))
+legend boxoff
+box off
+
+
+figure (8) 
+yyaxis left
+e = errorbar(CNgg,mean_plot{1},std_plot{1});
+e.LineWidth = 4;
+e.LineStyle = '--';
+ hold on
+shadedErrorBar(CNgg,mean_plot{2},std_plot{2},'Lineprops','-b','transparent',1);
+% s.mainLine.LineWidth = 6;
+    ylabel('Fluxes (mmol.g_{DCW}^{-1}.h^{-1})')
+    xlabel('C/N (g/g)')
+    set(gca,'FontSize',30)
+   xlim([0 71])
+
+   yyaxis right
+e = errorbar(CNgg,mean_plot{4},std_plot{4});
+e.LineWidth = 4;
+e.LineStyle = '--';
+hold on
+% shadedErrorBar(CNgg,mean_plot{3},std_plot{3},'Lineprops','-r','transparent',1);
+shadedErrorBar(CNgg,mean_plot{3},std_plot{3},'Lineprops',{'-', 'color',[1 0.49 0] },'transparent',1);
+% s2.mainLine.LineWidth = 6;
+
+    ylabel('Fluxes (mmol.g_{DCW}^{-1}.h^{-1})')
+    xlabel('C/N (g/g)')
+    set(gca,'FontSize',30)
+   xlim([0 71])
+legend(plot_rx{1:4,2})
+legend boxoff
+
+box off
+
+figure(3)
+yyaxis left
+for i = 1:2
+    plot(CNgg,mean_plot{i},'LineWidth',5)
+    hold on
+     ylabel('Fluxes (mmol.g_{DCW}^{-1}.h^{-1})')
+    xlabel('C/N (g/g)')
+    set(gca,'FontSize',30)
+   xlim([0 72])
+end
+
+yyaxis right 
+
+for i = 3:4
+    box off 
+    plot(CNgg,mean_plot{i},'LineWidth',5)
+    hold on
+     ylabel('Fluxes (mmol.g_{DCW}^{-1}.h^{-1})')
+    xlabel('C/N (g/g)')
+    set(gca,'FontSize',30)
+   xlim([0 71])
+end
+
+legend(plot_rx{1:4,2})
+legend boxoff
+box off
+% yyaxis left
+% %shadedErrorBar(CNgg,mean_plot{1},std_plot{1},'Lineprops','-r','transparent',1);
+%  hold on
+% shadedErrorBar(CNgg,mean_plot{2},std_plot{2},'Lineprops','-b','transparent',1);
+% 
+% yyaxis right 
+% % shadedErrorBar(CNgg,mean_plot{3},std_plot{3},'Lineprops','-y','transparent',1);
+%  hold on
+% shadedErrorBar(CNgg,mean_plot{4},std_plot{4},'Lineprops','-g','transparent',1);
+
+
+
+%% plot on the same scale with zoom in figure 
+plot_rx = {'lipid_synthesis';acyl_glucose;cit_t4; cit_lyase};
+plot_rx (:,2) = {'lipid synthesis'; 'acyl-coA production';'citrate transport from mitochondria to cytosol';'ATP-citrate lyase'}; 
+for  i = 1: length(plot_rx)
+    index = strmatch(plot_rx(i,1),model.rxns);
+    for j = [2:4,6: length(CNmol)] % 0, 5 are infeasible
+    mean_flux (j,1) = mean(sampling_result{j}.points(index,:)); 
+    std_flux (j,1) = std(sampling_result{j}.points(index,:));
+    end
+    mean_plot{i} = mean_flux; % 4 column for 4 rxns, 10 value/column for 10 CN ratio
+    std_plot{i} = std_flux;
+end
+
+
+color = {[0 0.4470 0.7410],	[0.8500 0.3250 0.0980], [0.3010 0.7450 0.9330], [0.6350 0.0780 0.1840] }; 
+
+figure (3) 
+subplot(2,1,1)
+for i =1: length(plot_rx)
+e = errorbar(CNgg,mean_plot{i},std_plot{i});
+e.LineWidth = 4;
+e.LineStyle = '-';hold on
+ylabel('Fluxes (mmol.g_{DCW}^{-1}.h^{-1})')
+xlabel('C/N (g/g)')
+set(gca,'FontSize',30)
+end
+xlim([0 72])
+max_1 = max(std_plot{3});
+Imax_1 = find(std_plot{3} == max_1);
+mean_1 = mean_plot{3}; 
+ylim([(mean_1(Imax_1) - max_1) (mean_1(Imax_1) + max_1)])
+legend (plot_rx(:,2))
+legend boxoff
+box off
+title ('A.')
+subplot(2,1,2)
+for i = 1:2
+e = errorbar(CNgg,mean_plot{i},std_plot{i});
+e.LineWidth = 4;
+e.LineStyle = '-';hold on
+ylabel('Fluxes (mmol.g_{DCW}^{-1}.h^{-1})')
+xlabel('C/N (g/g)')
+set(gca,'FontSize',30)
+end
+  xlim([0 72])
+  max_2 = max(std_plot{2});
+Imax_2 = find(std_plot{2} == max_2);
+mean_2 = mean_plot{2}; 
+ylim([(mean_2(Imax_2) - max_2) (mean_2(Imax_2) + max_2)])
+title ('B.')
+box off
