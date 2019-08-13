@@ -36,7 +36,8 @@ function [Final_model] = BuildCryptoGEM;
 % - '2019_01st_05_to_make_reversible.xlsx': list of reactions whose reverse
 % direction help to rescue growth after removing loop
 
-% Nhung, 6th Febuary 2019 
+% Nhung, 23rd May 2018
+% Nhung, 6th Febuary 2019 - add removing infeasible loop
 
 %% 1. draft model by calling draftModel function
 % this step extract reactions from the homologous genes. Orphan, exchange
