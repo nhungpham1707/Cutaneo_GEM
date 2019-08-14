@@ -26,6 +26,8 @@ function [Final_model] = BuildCryptoGEM;
 % - Step 20. Inspecting unbalance reactions  - this was done directly on iNL895.xml prior to construction, save as modified_iNL895.xml
 % - Step 21. Convert gene IDs 
 % - Step 22. Remove infeasible loop that generate energy from nothing 
+% - Step 23. Add subsystem for amino acid metabolism 
+
 
 %% Data use for this project include
 % - iNL895 sbml file which is modified. In the original model, boundary
@@ -38,6 +40,8 @@ function [Final_model] = BuildCryptoGEM;
 
 % Nhung, 23rd May 2018
 % Nhung, 6th Febuary 2019 - add removing infeasible loop
+% Nhung, 14th Aug 2019 - add subsystems for amino acid metabolism 
+
 
 %% 1. draft model by calling draftModel function
 % this step extract reactions from the homologous genes. Orphan, exchange
@@ -187,8 +191,10 @@ model21 = ConvertCryptoGeneID (model19);
 
 model22  = RemoveATPLoop(model21);
 
-model22.description = 'Cryptococcus_curvatus_model.xml';
+%% 23. Add subsystem for amino acid metabolism 
 
-Final_model = model22; 
+model23 = AssignSubsystem(model22); 
 
+model23.description = 'iNP636_Ccurvatum_ATCC20509_model.xml';
+Final_model = model23; 
 
