@@ -14,7 +14,8 @@ function model = ConvertID(model);
 %% Nhung 17-08-2018 
 % model = BuildFinalCryptoModel; 
 ori_dir = pwd;
-fileName = '15_08_2018_Map_CheBI_BiGG.xlsx';
+% fileName = '15_08_2018_Map_CheBI_BiGG.xlsx';
+fileName = '01st_08_2019_Map_CheBI_BiGG.xlsx'; % Nhung changed some CheBI ID to BiGG , i.e. citrate, oxaloacetate
 
 % load data
 dir = fileparts(which(fileName));
