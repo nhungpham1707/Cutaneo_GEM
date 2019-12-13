@@ -1,4 +1,4 @@
-function [Final_model] = BuildCryptoGEM;
+function [Final_model] = BuildCutaneoGEM;
 
 %% This function generate Cryptococcus cuvartus  model using scaffold based approach (Loira et al, 2012). The scaffold model is iNL895 of Y.lipolytica
 %% the workflow is as follow 
