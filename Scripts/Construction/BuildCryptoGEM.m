@@ -27,7 +27,7 @@ function [Final_model] = BuildCryptoGEM;
 % - Step 21. Convert gene IDs 
 % - Step 22. Remove infeasible loop that generate energy from nothing 
 % - Step 23. Add subsystem for amino acid metabolism 
-
+% - Step 24. Add metCharge and Formula for metabolites in model 
 
 %% Data use for this project include
 % - iNL895 sbml file which is modified. In the original model, boundary
@@ -41,7 +41,7 @@ function [Final_model] = BuildCryptoGEM;
 % Nhung, 23rd May 2018
 % Nhung, 6th Febuary 2019 - add removing infeasible loop
 % Nhung, 14th Aug 2019 - add subsystems for amino acid metabolism 
-
+% Nhung, 13rd Dec 2019 - add metCharge, formula 
 
 %% 1. draft model by calling draftModel function
 % this step extract reactions from the homologous genes. Orphan, exchange
@@ -194,7 +194,11 @@ model22  = RemoveATPLoop(model21);
 %% 23. Add subsystem for amino acid metabolism 
 
 model23 = AssignSubsystem(model22); 
+%% 24. Add met charge and formula 
 
-model23.description = 'iNP636_Coleaginosus_ATCC20509_model.xml';
-Final_model = model23; 
+model24 = addMetChargeFormula(model23)
+
+
+model24.description = 'iNP636_Coleaginosus_ATCC20509_model.xml';
+Final_model = model24; 
 
