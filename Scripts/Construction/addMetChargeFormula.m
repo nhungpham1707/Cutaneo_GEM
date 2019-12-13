@@ -1,3 +1,5 @@
+function model = addMetChargeFormula(model)
+
 % Add met charge and formula for metabolites in iNP636 based on iSB619
 % model, Staphylococcus aureus subsp. aureus N315 from BiGG 
 % Becker, Scott A., and Bernhard Ø. Palsson. "Genome-scale reconstruction of the metabolic network in Staphylococcus aureus N315: an initial draft to the two-dimensional annotation." BMC microbiology 5.1 (2005): 8.
