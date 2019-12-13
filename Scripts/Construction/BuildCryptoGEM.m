@@ -195,6 +195,6 @@ model22  = RemoveATPLoop(model21);
 
 model23 = AssignSubsystem(model22); 
 
-model23.description = 'iNP636_Ccurvatum_ATCC20509_model.xml';
+model23.description = 'iNP636_Coleaginosus_ATCC20509_model.xml';
 Final_model = model23; 
 
