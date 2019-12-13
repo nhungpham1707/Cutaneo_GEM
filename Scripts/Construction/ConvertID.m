@@ -3,9 +3,6 @@ function model = ConvertID(model);
 %% this function convert model in-house ID to ID in standard database (BiGG, CheBI, and KEGG)
 %% Input
 %- model
-%% optional input
-%- data file name if using different file. In string format. For example,
-%'17_08_2018_inputfile.xlsx'. The file need to be in the search path
 
 %% output
 
