@@ -95,7 +95,7 @@ NewModel.subSystems(end) = cellstr('Fatty acid synthesis in cytosol');
  NewModel = changeGeneAssociation(NewModel,'R10825_R10826_R10827_R10828','YALI0E23185g and YALI0B15059g and YALI0C11407g and YALI0B19382g');
  
  % C16:0 CoA --> C16:1 CoA s_0783 in ER 
- NewModel = addReaction(NewModel,'C16coA desaturase','s_1097 + s_1161 + s_1188 + s_0765 -> s_0783 + s_1092 + 2 s_1435');
+ NewModel = addReaction(NewModel,'C16coA_desaturase','s_1097 + s_1161 + s_1188 + s_0765 -> s_0783 + s_1092 + 2 s_1435');
  NewModel.metNames(strmatch('s_0783',NewModel.mets)) = cellstr('hexadec-2-enoyl-CoA [endoplasmic reticulum]');
  NewModel.rxnNames (end) = cellstr('palmitoyl-CoA desaturase (n-C16:0CoA -> n-C16:1CoA)');
  NewModel = changeGeneAssociation(NewModel,'FindReactionID','YALI0C05951g');
