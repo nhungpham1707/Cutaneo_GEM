@@ -5,7 +5,7 @@ function [model_new,CNgg,lipid] = BiomassInDifConditions(model,mol_c_source,n_cs
 
 % biomass = p protein + c carbohydrate + l lipid + 3% dna and rna 
 
-% p + c + l = 100 -3 = 97 % 
+% p + c + l = 100 -5 = 95 % 
 
 % problem find p,c,l in different C/N ratio 
 
