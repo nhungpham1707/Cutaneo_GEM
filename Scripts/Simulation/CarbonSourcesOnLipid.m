@@ -10,13 +10,10 @@ ori_model = model;
 urea = 'r_160_exchange'; 
 lipid = 'Ex_lipid_body_cytosol';
 biomass_N = 'Biomass_nitrogen_abundant';
-biomass_Ndel = 'Biomass_nitrogen_deletion'; 
+biomass_Ndel = 'Biomass_nitrogen_depletion'; 
 biomass = 'r_1814'; % exchange reaction for biomass
-acyl_N = 'Acyl_Pool_glycerol';
-acyl_Ndel = 'Acyl_Pool_glycerol_Ndel';
 acyl_glucose = 'Acyl_Pool_glucose'; 
 
-model = removeRxns(model,{acyl_N, acyl_Ndel, biomass_Ndel});
 model = changeRxnBounds(model,{'ATPM'},1,'b');
 model = changeRxnBounds(model,biomass_N,0,'b');
 model = changeRxnBounds(model,{acyl_glucose,acyl_glucose},[0 1000],{'l','u'});
@@ -26,17 +23,13 @@ carbon (:,2) = {'Glucose','Sucrose','Xylose','Fructose','Ethanol','Glycerol'};
 carbon_number = [6,12,5,6,2,3]; % number of carbon element on the carbon source
 
 %% Simulate lipid and growth for different C source 
-% C_mmol = [0.1 : 5 : 300] ;
-% urea_mmol = [0.1 : 1 : 30];
 
-N = [0.1:0.01:0.8]; % new data to fit with the process model 
-C = [1.5 : 0.05 : 8.5];
-
-% C_mmol = [0.1 : 2 : 100] ; original data before the meeting on 02nd
-% august
-% urea_mmol = [0.1 : 1 : 10];
+C_mmol = [0.1 : 2 : 100] ; 
+urea_mmol = [0.1 : 1 : 10];
 urea_mmol = N*1000/14;
 C_mmol = C * 1000/12;
+
+model = changeRxnBounds(model,'r_51_exchange',0,'b'); %remove glucose from medium 
 
 for i = 1: length(carbon)
     for j = 1: length(C_mmol)
@@ -111,28 +104,9 @@ colormap(cmap)
 hcb1=colorbar;
 end
 
-xlim([0.1 9.1])
-ylim([0.1 98.1])
 
 
 
-%% calculate yield 
 
-% load 2019_03rd_07.mat
-
-clear max_C maxValues source
-for i = 1: length(carbon) 
-    n =0;
-    maxValues(i) = max(lipid_max(i).flux(:));
-    for j = 1: length(C_mmol)
-       if max(lipid_max(i).flux(j,:)) == maxValues(i);
-        n = n+1; 
-        max_C (n,i) = C_mmol(j);
-       else
-       end
-    end 
-end
-
-yield = maxValues* 475.14 ./ max_C * 12
 
 
