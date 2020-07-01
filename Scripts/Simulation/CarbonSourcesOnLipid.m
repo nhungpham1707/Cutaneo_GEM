@@ -10,7 +10,7 @@ ori_model = model;
 urea = 'r_160_exchange'; 
 lipid = 'Ex_lipid_body_cytosol';
 biomass_N = 'Biomass_nitrogen_abundant';
-biomass_Ndel = 'Biomass_nitrogen_depletion'; 
+biomass_Ndepl = 'Biomass_nitrogen_depletion'; 
 biomass = 'r_1814'; % exchange reaction for biomass
 acyl_glucose = 'Acyl_Pool_glucose'; 
 
