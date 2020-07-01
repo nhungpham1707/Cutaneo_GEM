@@ -3,7 +3,7 @@ function [model_new,CNgg,lipid] = BiomassInDifConditions(model,mol_c_source,n_cs
 %% Formulate biomass to simulate at nitrogen limited condition 
 %% Find parameters 
 
-% biomass = p protein + c carbohydrate + l lipid + 3% dna and rna 
+% biomass = p protein + c carbohydrate + l lipid + 5% dna and rna 
 
 % p + c + l = 100 -5 = 95 % 
 
@@ -14,6 +14,9 @@ function [model_new,CNgg,lipid] = BiomassInDifConditions(model,mol_c_source,n_cs
 % - model
 % - mol_c_source : uptake rate of c source (for example, -10 mmol/g/h glucose)
 % -n_c_source: number of carbon in the c_source. for example, glucose has 6 carbon
+
+% Nhung Pham 2020 01st july - the script has been tested on MATLAB R2016b
+
 
 %% 1. Find l. get relationship between lipid (l) in the biomass and C/N ratio from table 2 Awad et al 2019 
 
