@@ -9049,18 +9049,6 @@
           <speciesReference species="M_h__c" stoichiometry="1" constant="true"/>
         </listOfProducts>
       </reaction>
-      <reaction id="R_r_0127" name="acetyl-CoA synthetase" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
-        <listOfReactants>
-          <speciesReference species="M_ac__c" stoichiometry="1" constant="true"/>
-          <speciesReference species="M_atp__c" stoichiometry="1" constant="true"/>
-          <speciesReference species="M_coa__c" stoichiometry="1" constant="true"/>
-        </listOfReactants>
-        <listOfProducts>
-          <speciesReference species="M_accoa__c" stoichiometry="1" constant="true"/>
-          <speciesReference species="M_amp__c" stoichiometry="1" constant="true"/>
-          <speciesReference species="M_C00013__c" stoichiometry="1" constant="true"/>
-        </listOfProducts>
-      </reaction>
       <reaction id="R_r_0128" name="acetyl-CoA synthetase" reversible="false" fast="false" fbc:lowerFluxBound="cobra_0_bound" fbc:upperFluxBound="cobra_default_ub">
         <listOfReactants>
           <speciesReference species="M_ac__m" stoichiometry="1" constant="true"/>
@@ -9071,18 +9059,6 @@
           <speciesReference species="M_accoa__m" stoichiometry="1" constant="true"/>
           <speciesReference species="M_amp__m" stoichiometry="1" constant="true"/>
           <speciesReference species="M_C00013__m" stoichiometry="1" constant="true"/>
-        </listOfProducts>
-      </reaction>
-      <reaction id="R_r_0129" name="acetyl-CoA synthetase nuclear" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
-        <listOfReactants>
-          <speciesReference species="M_ac__n" stoichiometry="1" constant="true"/>
-          <speciesReference species="M_atp__n" stoichiometry="1" constant="true"/>
-          <speciesReference species="M_coa__n" stoichiometry="1" constant="true"/>
-        </listOfReactants>
-        <listOfProducts>
-          <speciesReference species="M_accoa__n" stoichiometry="1" constant="true"/>
-          <speciesReference species="M_amp__n" stoichiometry="1" constant="true"/>
-          <speciesReference species="M_C00013__n" stoichiometry="1" constant="true"/>
         </listOfProducts>
       </reaction>
       <reaction id="R_r_0130" name="acetylglutamate kinase" reversible="false" fast="false" fbc:lowerFluxBound="cobra_0_bound" fbc:upperFluxBound="cobra_default_ub">
