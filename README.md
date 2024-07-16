@@ -1,4 +1,4 @@
-**Genome-scale constraint-based metabolic model of* Cutaneotrichosporon oleaginosus*  **
+#Project: Constructing Genome-scale constraint-based metabolic model of *Cutaneotrichosporon oleaginosus* 
 
 **Folder structure description: **
 A genome-scale constraint-based metabolic model of* Cutaneotrichosporon oleaginosus*, iNP636_Coleaginosus_ATCC20509, was constructed using *Yarrowia lipolytica* model iNL895 as a template. 
