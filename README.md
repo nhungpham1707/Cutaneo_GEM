@@ -1,9 +1,19 @@
 # Project: Constructing Genome-scale constraint-based metabolic model of *Cutaneotrichosporon oleaginosus* 
 A genome-scale constraint-based metabolic model of* Cutaneotrichosporon oleaginosus*, iNP636_Coleaginosus_ATCC20509, was constructed using *Yarrowia lipolytica* model iNL895 as a template. 
 The model was then used to study lipid synthesis in *C. oleaginosus*.
-Start date: 20-Nov-2016
-Complete : 20-Dec-2019
-Nhung, 07th Feb 2019
+* Start date: 20-Nov-2016
+* Complete : 20-Dec-2019
+* Nhung, 07th Feb 2019
+
+The model focus on lipid metabolism. A curated lipid metabolic pathway is constructed as in figure below
+
+<p>
+<img src="https://github.com/nhungpham1707/Cutaneo_GEM/blob/master/Results_Figures/lipid_v01.pdf" width="400" height="300" alt>
+</p>
+<p>
+    <em>Curated lipid metabolic pathway in *C. oleaginosus*<em>.
+        </p>
+
 
 ## Folder structure description
 The data folder contains data to draft, curate and validate the model. 
