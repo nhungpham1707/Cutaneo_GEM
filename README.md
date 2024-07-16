@@ -8,7 +8,7 @@ The model was then used to study lipid synthesis in *C. oleaginosus*.
 The model focus on lipid metabolism. A curated lipid metabolic pathway is constructed as in figure below
 
 <p>
-<img src="https://github.com/nhungpham1707/Cutaneo_GEM/blob/master/Results_Figures/lipid_v01-1.png" width="400" height="300" alt>
+<img src="https://github.com/nhungpham1707/Cutaneo_GEM/blob/master/Results_Figures/lipid_v01-1.png" width="600" height="700" alt>
 </p>
 <p>
     <em>Curated lipid metabolic pathway in *C. oleaginosus*<em>.
