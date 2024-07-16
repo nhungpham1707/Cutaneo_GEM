@@ -11,16 +11,17 @@ The model focus on lipid metabolism. A curated lipid metabolic pathway is constr
 <img src="https://github.com/nhungpham1707/Cutaneo_GEM/blob/master/Results_Figures/lipid_v01-1.png" width="600" height="700" alt>
 </p>
 <p>
-    <em>Curated lipid metabolic pathway in *C. oleaginosus*<em>.
+    <em>Curated lipid metabolic pathway in C. oleaginosus<em>.
         </p>
 
 
 ## Folder structure description
-The data folder contains data to draft, curate and validate the model. 
-The script folder contains codes to build model (construction folder), Validation (same name folder), and Simulation (same name folder). 
-In the construction folder, BuildCutaneoGEM is the master script to build *C. oleaginosus *model. This function calls all other functions in the current folder to build the model.
 
-More details are explained in the script. 
+* data folder: contains data to draft, curate and validate the model.
+* script folder: contains codes to build model (construction folder), Validation (same name folder), and Simulation (same name folder). 
+* construction folder: BuildCutaneoGEM is the master script to build *C. oleaginosus* model. This function calls all other functions in the current folder to build the model. More details are explained in the script. 
+
+
 
 ## Instruction to use model 
 
